@@ -171,5 +171,62 @@
         System.out.println("integer "+in);
         System.out.println("double "+d);
     }
+}
 
+//userNameValidator
+class UsernameValidator
+{
+    public static boolean isValid(String username)
+    {
+        int n = username.length();
+        if(n<3 || n>10)
+        {
+            return false;
+        }
+        if(!Character.isLetter(username.charAt(0)))
+        {
+            return false;
+        }
+        for(int i=1;i<n;i++)
+        {
+            if(!Character.isLetterOrDigit(username.charAt(i)))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+
+//factorial_recursive
+class Factorial
+{
+    public static int factorial(int n)
+    {
+        if(n==0)
+        {
+            return 1;
+        }
+        return n*factorial(n-1);
+    }
+}
+
+
+//possible number of balance binary tree
+class PossibleNumberOfBalanceBinaryTree
+{
+    public static int possibleNumberOfBalanceBinaryTree(int n)
+    {
+        if(n==0)
+        {
+            return 1;
+        }
+        int res = 0;
+        for(int i=1;i<=n;i++)
+        {
+            res += possibleNumberOfBalanceBinaryTree(i-1)*possibleNumberOfBalanceBinaryTree(n-i);
+        }
+        return res;
+    }
 }
