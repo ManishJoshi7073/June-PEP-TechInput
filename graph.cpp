@@ -12,37 +12,41 @@ using namespace std;
 //         cout<<endl;
 //     }
 // }
-void dfs(int i)
+
+void dfs(vector<vector<int>>&g,int s,vector<bool>&vis,int v)
 {
-    visited[i]=1;
-    for(int j=0;j<v;j++)
+    vis[s]=true;
+    cout<<s<<"\n";
+
+    for(int i=0;i<v;i++)
     {
-        if(graph[i][j]==1 && visited[j]==0)
+        if(g[s][i]==1 && vis[i]==false)
         {
-            dfs(j);
+            dfs(g,i,vis,v);
         }
     }
+    return;
 }
 
-void bfs(int i)
-{
-    queue<int> q;
-    q.push(i);
-    visited[i]=1;
-    while(!q.empty())
-    {
-        int x=q.front();
-        q.pop();
-        for(int j=0;j<v;j++)
-        {
-            if(graph[x][j]==1 && visited[j]==0)
-            {
-                q.push(j);
-                visited[j]=1;
-            }
-        }
-    }
-}
+// void bfs(int i)   
+// {
+//     queue<int> q;
+//     q.push(i);
+//     visited[i]=1;
+//     while(!q.empty())
+//     {
+//         int x=q.front();
+//         q.pop();
+//         for(int j=0;j<v;j++)
+//         {
+//             if(graph[x][j]==1 && visited[j]==0)
+//             {
+//                 q.push(j);
+//                 visited[j]=1;
+//             }
+//         }
+//     }
+// }
 
 int main()
 {
@@ -55,12 +59,24 @@ int main()
 
     for(int i=0;i<e;i++)
     {
-        int s,d;
+        int s,d; //s means source and d means destination
         cout<<"Enter the edge s,d: ";
         cin>>s,d;
         graph[s][d]=1;
         graph[d][s]=1;
     } 
+
+    vector<bool>visited(v,false);
+
+    for(int i=0;i<v;i++)
+    {
+        if(visited[i]==false)
+        {
+            dfs(graph,i,visited,v);
+        }
+    }
+return 0;
     
 }
+
 
