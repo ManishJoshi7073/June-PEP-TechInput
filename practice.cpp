@@ -1,78 +1,59 @@
-//least common ancestor of a binary tree
- TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-         if(!root) return NULL;
-    if(root==p || root==q) return root;
-    TreeNode* left = lowestCommonAncestor(root->left,p,q);
-    TreeNode* right = lowestCommonAncestor(root->right,p,q);
-    if(!left && !right) return NULL;
-    else if(!left && right) return right;
-    else if(left && !right) return left;
-        
-        return root;
-        
-    }
- 
- //Construct Binary Tree From Preorder and Inorder Traversal
+//input : "whereabouts"
+// output: "CVCVCVC"
+// C for consonants V for vowels
+// CVCVCVC
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+char *vowl(char *str)
+{
+	int size = 1;
+	while (str[size])
+		size++;
 
- TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
-         if(preorder.size()==0) return NULL;
-    int root = preorder[0];
-    int index = find(inorder.begin(),inorder.end(),root)-inorder.begin();
-    vector<int> leftPreorder(preorder.begin()+1,preorder.begin()+index+1);
-    vector<int> leftInorder(inorder.begin(),inorder.begin()+index);
-    vector<int> rightPreorder(preorder.begin()+index+1,preorder.end());
-    vector<int> rightInorder(inorder.begin()+index+1,inorder.end());
-    TreeNode* left = buildTree(leftPreorder,leftInorder);
-    TreeNode* right = buildTree(rightPreorder,rightInorder);
-    TreeNode* root = new TreeNode(root);
-    root->left = left;
-    root->right = right;
-    return root;
-    }
+	char *vowel = new char[size];
 
-    //Valid BInary Search Tree
-    bool isValidBST(TreeNode* root) {
-        if(!root) return true;
-        if(root->left) {
-            if(root->left->val>=root->val) return false;
-            if(!isValidBST(root->left)) return false;
-        }
-        if(root->right) {
-            if(root->right->val<=root->val) return false;
-            if(!isValidBST(root->right)) return false;
-        }
-        return true;
-    }  
+	int i = 0;
+	int j = 0;
 
+	for (i = 0; i < size; i++)
+	{
+		if (str[i] == 'a' || str[i] == 'e' || str[i] == 'i' || str[i] == 'o' || str[i] == 'u')
+		{
+			if (i == 0)
+			{
+				vowel[j] = 'V';
+				j++;
+			}
+			else if (vowel[j - 1] != 'V')
+			{
+				vowel[j] = 'V';
+				j++;
+			}
+		}
+		else
+		{
+			if (i == 0)
+			{
+				vowel[j] = 'C';
+				j++;
+			}
+			else if (vowel[j - 1] != 'C')
+			{
+				vowel[j] = 'C';
+				j++;
+			}
+		}
+	}
 
+	vowel[j] = '\0';
+	return vowel;
+}
+int main()
+{
+	char str[] = "aaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbccccccccccceeeeeeddd";
 
-
-     bool isValidBST(TreeNode* root) {
-        if(!root) 
-        {
-            return true;
-        }
-        if(root->left) 
-        {
-            if(root->left->val>=root->val)
-            {
-                return false;
-             }
-            if(!isValidBST(root->left)) 
-            {
-                return false;
-            }
-        }
-        if(root->right) 
-        {
-            if(root->right->val<=root->val) 
-            {
-                return false;
-            }
-            if(!isValidBST(root->right))
-            {
-                return false;
-            }
-        }
-        return true;
-    }    
+	char *vowel = vowl(str);
+	cout << vowel << endl;
+	return 0;
+}

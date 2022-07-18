@@ -28,25 +28,28 @@ void dfs(vector<vector<int>>&g,int s,vector<bool>&vis,int v)
     return;
 }
 
-// void bfs(int i)   
-// {
-//     queue<int> q;
-//     q.push(i);
-//     visited[i]=1;
-//     while(!q.empty())
-//     {
-//         int x=q.front();
-//         q.pop();
-//         for(int j=0;j<v;j++)
-//         {
-//             if(graph[x][j]==1 && visited[j]==0)
-//             {
-//                 q.push(j);
-//                 visited[j]=1;
-//             }
-//         }
-//     }
-// }
+void bfs(vector<vector<int>>&g,int s,vector<bool>&vis,int v)
+{
+    queue<int>q;
+    q.push(s);
+    vis[s]=true;
+    while(!q.empty())
+    {
+        int s = q.front();
+        q.pop();
+        cout<<s<<"\n";
+        for(int i=0;i<v;i++)
+        {
+            if(g[s][i]==1 && vis[i]==false)
+            {
+                q.push(i);
+                vis[i]=true;
+            }
+        }
+    }
+    return;
+}
+
 
 int main()
 {
