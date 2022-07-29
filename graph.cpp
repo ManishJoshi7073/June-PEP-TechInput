@@ -1,19 +1,20 @@
 #include<bits/stdc++.h>
 using namespace std;
+ 
 
-// void print()
-// {
-//     for(int i=0;i<v;i++)
-//     {
-//         for(int j=0;j<v;j++)
-//         {
-//             cout<<graph[i][j]<<" ";
-//         }
-//         cout<<endl;
-//     }
-// }
+void print() //print the graph
+{
+    for(int i=0;i<v;i++)
+    {
+        for(int j=0;j<v;j++)
+        {
+            cout<<graph[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+}
 
-void dfs(vector<vector<int>>&g,int s,vector<bool>&vis,int v)
+void dfs(vector<vector<int>>&g,int s,vector<bool>&vis,int v) //DFS algorithm
 {
     vis[s]=true;
     cout<<s<<"\n";
@@ -28,7 +29,7 @@ void dfs(vector<vector<int>>&g,int s,vector<bool>&vis,int v)
     return;
 }
 
-void bfs(vector<vector<int>>&g,int s,vector<bool>&vis,int v)
+void bfs(vector<vector<int>>&g,int s,vector<bool>&vis,int v) //bfs algorithm
 {
     queue<int>q;
     q.push(s);
